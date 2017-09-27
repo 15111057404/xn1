@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaonei.mapper.UserMapper" >
+    <select id="queryUserList" parameterType="com.xiaonei.entity.User" resultType="com.xiaonei.entity.User">
+        select * from users where email=#{email} and pwd=#{pwd}
+    </select>
+    <insert id="addUser" parameterType="com.xiaonei.entity.User">
+    	insert into users (name,email,pwd,sex,photo,visited,loginDate,Level) values (#{name},#{email},#{pwd},#{sex},#{photo},#{visited},#{loginDate},#{Level})
+    </insert>
+	<insert id="addBlog" parameterType="com.xiaonei.entity.Blog">
+    	insert into blog (blogName,userId,descript,creTime,updTime) values (#{blogName},#{userId},#{descript},#{creTime},#{updTime})
+    </insert>
+    <select id="queryBlogList" parameterType="com.xiaonei.entity.User" resultType="com.xiaonei.entity.Blog">
+    	select * from blog where userId = #{id}
+    </select>                        
+	<select id="queryBlogMain" parameterType="String" resultType="com.xiaonei.entity.Blog_main">
+    	select * from blog_main where blogId = #{id}
+    </select>
+</mapper>
